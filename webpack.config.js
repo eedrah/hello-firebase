@@ -23,15 +23,6 @@ module.exports = {
         test: /\.jsx?/,
         loaders: ['babel?presets[]=es2015'],
         exclude: /node_modules/
-      // },
-      // {
-      //   test: /\.css$/,
-      //   loaders: [ 'style', 'css', 'postcss' ]
-      // },
-      // {
-      //   test: /\.(png|jpg)$/,
-      //   loaders: [ 'url' ],
-      //   query: { limit: 8192 }
       }
     ]
   },

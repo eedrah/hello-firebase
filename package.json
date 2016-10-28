@@ -1,5 +1,5 @@
 {
-  "name": "hello-firebase",
+  "name": "com-notes",
   "version": "1.0.0",
   "description": "",
   "main": "webpack.config.prod.js",
@@ -17,15 +17,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/eedrah/hello-firebase.git"
+    "url": "git+https://github.com/eedrah/com-notes.git"
   },
   "author": "eedrah",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/eedrah/hello-firebase/issues"
+    "url": "https://github.com/eedrah/com-notes/issues"
   },
   "private": true,
-  "homepage": "https://github.com/eedrah/hello-firebase#readme",
+  "homepage": "https://github.com/eedrah/com-notes#readme",
   "devDependencies": {
     "babel-core": "^6.18.0",
     "babel-loader": "^6.2.7",
