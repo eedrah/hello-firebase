@@ -1,5 +1,9 @@
-// const db = require('./db')
-require('./textbox')
+const db = require('./db')
+const text = require('./textbox')
+
+text.addEventListener('input', () => {
+  db.ref('/').set(text.value)
+})
 
 // function listenerCallback (value) {
 //   console.log('listen callback fired! Value is:')
