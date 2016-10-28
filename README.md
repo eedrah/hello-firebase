@@ -1,1 +1,1 @@
-# com-notes
+# notes
