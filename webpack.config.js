@@ -1,3 +1,5 @@
+var webpack = require('webpack')
+var HtmlWebpackPlugin = require('html-webpack-plugin')
 var path = require('path')
 var BellOnBundlerErrorPlugin = require('bell-on-bundler-error-plugin')
 var UnusedFilesWebpackPlugin = require('unused-files-webpack-plugin').default
@@ -37,7 +39,17 @@ module.exports = {
     new UnusedFilesWebpackPlugin({
       pattern: 'src/**/*.*'
     }),
-    new BellOnBundlerErrorPlugin()
+    new BellOnBundlerErrorPlugin(),
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+    }),
+    new HtmlWebpackPlugin({
+      title: 'Eedrah',
+      filename: 'index.html',
+      inject: false,
+      template: 'node_modules/html-webpack-template/index.ejs',
+      baseHref: '/'
+    })
   ],
   progress: true
 }
