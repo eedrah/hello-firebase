@@ -48,7 +48,8 @@ module.exports = {
       filename: 'index.html',
       inject: false,
       template: 'node_modules/html-webpack-template/index.ejs',
-      baseHref: '/'
+      baseHref: '/',
+      appMountId: 'app'
     })
   ],
   progress: true
