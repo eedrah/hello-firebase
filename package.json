@@ -2,8 +2,17 @@
   "name": "hello-firebase",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "webpack.config.prod.js",
   "scripts": {
+    "start": "npm run build",
+    "clean": "rimraf dist && git rm -rf --ignore-unmatch dist",
+    "dist-static-content": "mkdirp content && ncp content dist",
+    "prebuild": "npm run clean && npm run dist-static-content",
+    "build": "cross-env NODE_ENV=production webpack --config webpack.config.prod.js",
+    "predeploy": "npm run build && git add dist && git commit -m deploy",
+    "deploy": "git subtree split -P dist | xargs -I % git push origin +%:refs/heads/gh-pages",
+    "postdeploy": "git reset --soft head~1 && npm run clean",
+    "dev": "webpack-dev-server --config webpack.config.dev.js --inline --hot --content-base src/ --history-api-fallback",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -28,6 +37,11 @@
     "eslint-plugin-promise": "^3.3.0",
     "eslint-plugin-standard": "^2.0.1",
     "html-webpack-plugin": "^2.24.0",
+    "merge-and-concat": "^1.0.2",
+    "mkdirp": "^0.5.1",
+    "ncp": "^2.0.0",
+    "rimraf": "^2.5.4",
+    "unused-files-webpack-plugin": "^3.0.0",
     "webpack": "^1.13.3",
     "webpack-dev-server": "^1.16.2"
   }
