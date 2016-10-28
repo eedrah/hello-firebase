@@ -1,44 +1,30 @@
-import React from 'react'
-import { render } from 'react-dom'
-import { browserHistory, Router } from 'react-router'
-const scriptjs = require('scriptjs')
+const firebase = require('firebase/app')
+require('firebase/database')
 
-const reactApp = document.createElement('div')
-document.body.appendChild(reactApp)
+firebase.initializeApp({
+  apiKey: 'AIzaSyCSFQb7W5F4gP-Gs9NL6xUwcG4PRPFyVPQ',
+  authDomain: 'hello-world-3ac85.firebaseapp.com',
+  databaseURL: 'https://hello-world-3ac85.firebaseio.com',
+  storageBucket: 'hello-world-3ac85.appspot.com',
+  messagingSenderId: '91406665512'
+})
 
-const isProd = process.env.NODE_ENV === 'production'
-
-const getModule = function (module, callback) {
-  const address = isProd
-    ? `http://eedrah.com/${module}/main.js`
-    : 'http://localhost:8080/main.js'
-  scriptjs(address, () => {
-    callback(null, window[module])
-  })
+function listenerCallback (value) {
+  console.log('listen callback fired! Value is:')
+  console.log(value)
+  console.log('and the val() method returns:')
+  console.log(value.val())
 }
 
-const getComponent = function (module, callback) {
-  getModule(module, (err, moduleExport) => callback(null, moduleExport.component))
-}
-const getChildRoutes = function (module, callback) {
-  getModule(module, (err, moduleExport) => callback(null, moduleExport.childRoutes))
-}
+console.log('initialized')
 
-const routes = {
-  path: '/',
-  component: require('./App'),
-  childRoutes: [
-    {
-      path: 'hello',
-      getComponent: (location, callback) => getComponent('HelloRepo', callback),
-      getChildRoutes: (location, callback) => getChildRoutes('HelloRepo', callback)
-    },
-    {
-      path: 'javascript-quirks-exploits',
-      getComponent: (location, callback) =>
-      getComponent('javascript-quirks-exploits-segment', callback)
-    }
-  ]
-}
+const db = firebase.database()
 
-render((<Router history={browserHistory} routes={routes} />), reactApp)
+console.log('making read listener')
+db.ref('test').on('value', listenerCallback)
+
+console.log('writing data')
+db.ref('test').set('this is a test')
+
+console.log('listening once...')
+db.ref('test').once('value', listenerCallback)
