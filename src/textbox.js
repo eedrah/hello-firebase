@@ -1,6 +1,3 @@
-import 'core-js/es6/object'
-import 'core-js/es6/array'
-
 const rootNode = document.querySelector('#app')
 const text = document.createElement('textarea')
 rootNode.appendChild(text)
