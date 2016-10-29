@@ -1,5 +1,5 @@
-const db = require('./db')
-const text = require('./textbox')
+import db from './db'
+import text from './textbox'
 
 const ref = db.ref('/')
 

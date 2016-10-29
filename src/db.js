@@ -1,5 +1,5 @@
-const firebase = require('firebase/app')
-require('firebase/database')
+import firebase from 'firebase/app'
+import 'firebase/database'
 
 firebase.initializeApp({
   apiKey: 'AIzaSyCSFQb7W5F4gP-Gs9NL6xUwcG4PRPFyVPQ',
