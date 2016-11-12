@@ -1,12 +1,15 @@
 import db from './db'
 import text from './textbox'
+import verifyHttps from './verifyHttps'
 
-const ref = db.ref('/')
+verifyHttps(() => {
+  const ref = db.ref('/')
 
-ref.on('value', (data) => {
-  text.value = data.val()
-})
+  ref.on('value', (data) => {
+    text.value = data.val()
+  })
 
-text.addEventListener('input', () => {
-  ref.set(text.value)
+  text.addEventListener('input', () => {
+    ref.set(text.value)
+  })
 })
